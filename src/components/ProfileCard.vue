@@ -18,7 +18,7 @@
     </v-list-item>
 
     <v-card-actions>
-      <v-btn text>Перейти в профиль</v-btn>
+      <v-btn class="ma-2" tile outlined color="green" text>Перейти в профиль</v-btn>
     </v-card-actions>
   </v-card>
 </template>
