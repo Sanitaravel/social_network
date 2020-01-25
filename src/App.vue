@@ -22,8 +22,8 @@
         </v-list-item>
         <v-divider class="my-3"></v-divider>  
         <v-list-item link
-                     :to="link.path + '/7'"
-                     :key="link.path + '/7'"
+                     :to="link.path"
+                     :key="link.path"
                      v-for="link in links">
           <v-list-item-icon>
             <v-icon>{{link.icon}}</v-icon>
@@ -38,7 +38,7 @@
     </v-navigation-drawer>
     <v-content class="px-12 py-3">
       <v-container fluid>
-        <router-view/>
+        <router-view v-on:login="updateUser"/>
       </v-container>
     </v-content>
   </v-app>
@@ -65,6 +65,11 @@ export default {
   props: {
       source: String,
     },
+  methods:{
+    updateUser(updID){
+      this.links[2].path = this.links[2].path + updID;
+    }
+  },
   data(){
     return {
       drawer: null,
@@ -82,11 +87,16 @@ export default {
         },
         {
            label: 'Профиль',
-           path: '/profile',
+           path: '/profile/',
            icon: 'mdi-face'
+        },
+        {
+          label: 'Логин',
+          path:'/login',
+          icon: 'mdi-login'
         }
       ]
     }
-  }
+  },
 }
 </script>

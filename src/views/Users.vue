@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ProfileCard v-for="user in users" :key="user.id" :name='user.name' :login='user.username' :id="user.id">
+        <ProfileCard v-for="user in users" :key="user.id" :name='user.name' :login='user.username' :id="user.id" flex-direction: column>
         </ProfileCard>
     </div>
 </template>
@@ -37,7 +37,6 @@ export default {
         update(){
             this.$axios.get('http://jsonplaceholder.typicode.com/users/')
             .then(responce=>{
-                console.log("user_responce", responce.data)
                 this.users = responce.data
             })
         }        

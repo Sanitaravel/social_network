@@ -27,9 +27,12 @@
             </p>
         </v-col>
     </v-row>
-    <v-row>
-    <Card v-for="post in posts" :key="post.id" :body="post.body" :title="post.title">
-    </Card>
+    <v-divider class="my-3"></v-divider>
+    <v-row class="text-left">
+        <v-col cols="9">
+            <Card class="post" v-for="post in posts" :key="post.id" :body="post.body" :title="post.title">
+            </Card>
+        </v-col>
     </v-row>
 </div>
 </template>
@@ -51,6 +54,12 @@
 }
 </style>
 
+<style>
+.post{
+  margin-top: 60px,
+}
+</style>
+
 <script>
 import Card from '../components/Card.vue'
     export default {
@@ -63,16 +72,12 @@ import Card from '../components/Card.vue'
         watch: {
             $route: {
                 handler(){
-                    console.log("i'm ready")
                     this.$axios.get('http://jsonplaceholder.typicode.com/users/'+ this.$route.params.id)
                     .then(response=>{
-                        console.log('response', response)
                         this.profile = response.data
                     })
-                    console.log("posts")
                     this.$axios.get('http://jsonplaceholder.typicode.com/posts?userId='+ this.$route.params.id)
                     .then(response1=>{
-                        console.log('response1', response1)
                         this.posts = response1.data
                     })
                 },
