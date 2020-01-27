@@ -1,4 +1,4 @@
-<template>
+ <template>
   <v-app id="app">
     <v-navigation-drawer color="green"
                          dark
@@ -73,7 +73,7 @@ export default {
   data(){
     return {
       drawer: null,
-      profile: [],
+      photo: '',
       links: [
         {
           label: 'Главная',

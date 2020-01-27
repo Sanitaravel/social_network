@@ -24,9 +24,31 @@
             <v-btn @click="authenticate">
                 Войти
             </v-btn>
+            <div class="nav">
+            <router-link to="registration">Регистрация</router-link>
+            </div>
         </v-card>
+        <router-view/>
+
     </div>
 </template>
+
+<style lang="scss">
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+}
+#nav {
+  a {
+    font-weight: bold;
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+</style>
 
 <script>
 export default {
