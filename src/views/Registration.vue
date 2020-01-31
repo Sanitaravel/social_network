@@ -24,6 +24,13 @@
         ></v-text-field>
 
         <v-text-field
+            v-model="password"
+            :rules="passwordRules"
+            label="Пароль"
+            required
+        ></v-text-field>
+
+        <v-text-field
             v-model="email"
             :rules="emailRules"
             label="E-mail"
@@ -108,6 +115,10 @@
         v => !!v || 'Логин обязателен',
         v => (v && v.length <= 10) || 'Логин должен иметь меньше 10 символов',
       ],
+      password:'',
+      passwordRules:[
+        v => !!v || 'Пароль обязателен',
+      ],
       website: '',
       city: '',
       company: '',
@@ -119,6 +130,23 @@
       validate () {
         if (this.$refs.form.validate()) {
           this.snackbar = true
+          this.axios.get('http://188.225.47.187/api/jsonstorage/34c68c7f92b79a3fdaa0fc579f9340d6')
+          .then(
+            (responce)=>{
+              let mas = responce.data;
+              let user = {"id":parseInt(mas[mas.length-1].id) + 1,"login":this.login,"password":this.password,"name":this.name,"website":this.website,"email":this.email,"city":this.city,"company":this.company,"photo":""}
+              console.log('test', user.id)
+              mas.push(user);
+              this.axios.post('http://188.225.47.187/api/jsonstorage/34c68c7f92b79a3fdaa0fc579f9340d6', {
+                mas
+              })
+              .then((responce)=>{
+                console.log("data ready", responce);
+              })
+              this.$emit('login', user.id)
+              this.$router.push('/profile/' + user.id);
+            }
+          )
         }
       },
       reset () {
@@ -126,6 +154,7 @@
       },
       resetValidation () {
         this.$refs.form.resetValidation()
+        document.location.href = '/';
       },
     },
   }

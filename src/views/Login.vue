@@ -24,8 +24,8 @@
             <v-btn @click="authenticate">
                 Войти
             </v-btn>
-            <div class="nav">
-            <router-link to="registration">Регистрация</router-link>
+            <div class="app">
+            <router-link class="nav" to="registration">Регистрация</router-link>
             </div>
         </v-card>
         <router-view/>
